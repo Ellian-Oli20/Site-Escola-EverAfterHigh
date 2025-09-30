@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ever After High</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', 'Cinzel', serif;
+            background: linear-gradient(135deg, #f8c1e3 0%, #f6a1d6 100%);
+            margin: 0;
+            min-height: 100vh;
+        }
+        .menu-vertical {
+            position: fixed;
+            top: 32px;
+            left: 32px;
+            width: 220px;
+            background: linear-gradient(180deg, #e92f8c 80%, #f8c1e3 100%);
+            box-shadow: 2px 8px 32px #e92f8c77;
+            display: none;
+            flex-direction: column;
+            z-index: 200;
+            border-right: 6px double #fffbe9;
+            border-radius: 24px;
+            overflow: hidden;
+            animation: menuFadeIn 1.2s ease;
+        }
+        .menu-vertical.menu-aberto {
+            display: flex;
+        }
+        .menu-toggle {
+            position: fixed;
+            top: 32px;
+            left: 32px;
+            z-index: 210;
+            background: linear-gradient(135deg, #e92f8c 80%, #f8c1e3 100%);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            box-shadow: 0 4px 16px #e92f8c55;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #fffbe9;
+            transition: box-shadow 0.2s;
+        }
+        .menu-toggle:hover {
+            box-shadow: 0 8px 32px #e92f8c99;
+            background: linear-gradient(135deg, #f8c1e3 80%, #e92f8c 100%);
+            color: #e92f8c;
+        }
+        @keyframes menuFadeIn {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .menu-vertical ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-vertical li {
+            margin: 0;
+            position: relative;
+        }
+        .menu-vertical a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 22px 32px 22px 28px;
+            color: #fffbe9;
+            font-family: 'Cinzel', 'Great Vibes', serif;
+            font-weight: 700;
+            font-size: 1.3em;
+            text-decoration: none;
+            border-bottom: 2px dashed #f6a1d6;
+            letter-spacing: 1.5px;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+            text-shadow: 0 2px 8px #e92f8c55, 0 0 2px #fffbe9;
+            position: relative;
+        }
+        .menu-vertical a::before {
+            content: attr(data-icon);
+            font-size: 1.3em;
+            margin-right: 8px;
+            opacity: 0.8;
+            filter: drop-shadow(0 2px 4px #e92f8c44);
+        }
+        .menu-vertical a:hover {
+            background: linear-gradient(90deg, #fffbe9 60%, #f8c1e3 100%);
+            color: #e92f8c;
+            box-shadow: 0 2px 24px #e92f8c66;
+            border-bottom: 2px solid #e92f8c;
+            text-shadow: 0 2px 16px #f6a1d6;
+            transform: scale(1.04);
+        }
+        .menu-vertical li:first-child a {
+            border-radius: 0 24px 0 0;
+        }
+        .menu-vertical li:last-child a {
+            border-radius: 0 0 24px 0;
+            border-bottom: none;
+        }
+        .conteudo {
+            margin-left: 270px;
+            max-width: 900px;
+            background: #fffbe9ee;
+            border-radius: 32px;
+            box-shadow: 0 8px 48px #e92f8c55;
+            padding: 48px 32px 48px 32px;
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            position: relative;
+            font-size: 3.2em;
+            font-family: 'Great Vibes', 'Cinzel', serif;
+            color: #e92f8c;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            padding: 56px 0 56px 0;
+            background: url('755a6487-51e8-4672-9d8b-f5eb847ca57a.jpg') center/cover no-repeat;
+            border-radius: 32px 32px 0 0;
+            box-shadow: 0 4px 24px #e92f8c44;
+            z-index: 1;
+            text-shadow: 0 2px 16px #f6a1d6, 0 0 2px #fffbe9;
+            border: 6px solid #fffbe9;
+            overflow: hidden;
+        }
+        h2 {
+            color: #a63dc0;
+            font-family: 'Cinzel', 'Great Vibes', serif;
+            font-size: 2em;
+            margin-top: 36px;
+            margin-bottom: 14px;
+            text-shadow: 0 2px 8px #f8c1e3;
+            text-align: center;
+            position: relative;
+        }
+        h2::before, h2::after {
+            content: "❦";
+            color: #e92f8c;
+            font-size: 1.2em;
+            margin: 0 8px;
+            opacity: 0.7;
+        }
+        p, ul, li {
+            font-size: 1.15em;
+            color: #6d2a5b;
+            font-family: 'Montserrat', serif;
+            text-align: center;
+        }
+        .galeria-escola, .galeria-alunas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+        .galeria-escola img, .galeria-alunas img {
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #e92f8c33;
+            border: 2px solid #e92f8c;
+            background: #fffbe9;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .galeria-escola img:hover, .galeria-alunas img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 24px #e92f8c66;
+            border-color: #f6a1d6;
+        }
+        .section {
+            background: #f8c1e3;
+            border-radius: 18px;
+            padding: 24px;
+            margin-top: 32px;
+            box-shadow: 0 2px 12px #e92f8c22;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .date {
+            color: #a63dc0;
+            font-weight: bold;
+        }
+        .outdoor {
+            background: #f8c1e3;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+        @media (max-width: 900px) {
+            .conteudo {
+                margin-left: 0;
+                max-width: 98vw;
+                padding: 12px;
+            }
+            .menu-vertical {
+                position: static;
+                width: 100vw;
+                height: auto;
+                flex-direction: row;
+                box-shadow: none;
+            }
+            .menu-vertical ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            .menu-vertical li {
+                flex: 1;
+            }
+            h1 {
+                font-size: 2em;
+                padding: 32px 0 32px 0;
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+<nav class="menu-vertical" id="menuVertical">
+    <ul>
+        <li><a href="#topo" data-icon="🏰">Início</a></li>
+        <li><a href="#mission-statement" data-icon="📜">Missão</a></li>
+        <li><a href="#upcoming-events" data-icon="🎉">Eventos</a></li>
+        <li><a href="#galeria" data-icon="🖼️">Galeria</a></li>
+        <li><a href="#alunas" data-icon="👑">Alunas Destaque</a></li>
+        <li><a href="#contact" data-icon="✉️">Contato</a></li>
+    </ul>
+</nav>
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuVertical = document.getElementById('menuVertical');
+    menuToggle.addEventListener('click', function() {
+        menuVertical.classList.toggle('menu-aberto');
+    });
+    // Fecha o menu ao clicar em um link
+    menuVertical.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuVertical.classList.remove('menu-aberto');
+        });
+    });
+</script>
+<div class="conteudo" id="topo">
+    <h1>Ever After High</h1>
+   
+    <p>Ever After High é uma escola mágica que prepara os filhos adolescentes dos personagens dos contos de fadas para assumirem seus destinos e manterem suas histórias vivas. Aqui, cada estudante é protagonista de seu próprio conto!</p>
+    <h2 id="mission-statement">Missão da Escola</h2>
+    <p>Nossa missão é perpetuar as histórias dos contos de fadas através das novas gerações, mantendo os destinos seguros e a magia sempre presente no mundo dos livros.</p>
+    <h2 id="upcoming-events">Eventos próximos</h2>
+    <ul>
+        <li>Feira de Ciência Mágica <span class="date">10 de Junho</span></li>
+        <li class="outdoor">Exibição de Arte Encantada <span class="date">15 de Junho</span></li>
+        <li class="outdoor">Dia dos Esportes Mágicos <span class="date">20 de Outubro</span></li>
+        <li>Festival de Contos de Fadas <span class="date">25 de Dezembro</span></li>
+        <li>Baile Real de Inverno <span class="date">31 de Dezembro</span></li>
+    </ul>
+    <h2 id="galeria">Galeria das dependências da escola</h2>
+    <div class="galeria-escola">
+        <img src="transferir (7).jpg" alt="imagem biblioteca da escola" width="300">
+        <img src="transferir (6).jpg" alt="imagem quadra de esportes da escola" width="300">
+        <img src="transferir (5).jpg" alt="imagem sala de aula da escola" width="300">
+        <img src="transferir (4).jpg" alt="imagem refeitório da escola" width="300">
+        <img src="transferir (3).jpg" alt="imagem auditório da escola" width="300">
+        <img src="transferir (2).jpg" alt="imagem corredor da escola" width="300">
+        <img src="transferir (1).jpg" alt="imagem entrada da escola" width="300">
+        <img src="Ever after high gazebo Bunny Alistair.jpg" alt="imagem gazebo da escola" width="300">
+        <img src="Ever After High (2013).jpg" alt="imagem do corredor principal da escola" width="300">
+        <img src="Castleteria.jpg" alt="imagem castelaria da escola" width="300">
+        <img src="Castleteria (1).jpg" alt="imagem castelaria da escola" width="300">
+        <img src="Anfiteatros 1.jpg" alt="imagem anfiteatro da escola" width="300">
+    </div>
+    <h2 id="alunas">Alunas Destaque do Semestre</h2>
+    <div class="galeria-alunas">
+        <img src="Ashlynn Ella.jpg" alt="Ashlyn Ella filha da Cinderela" width="600">
+        <img src="Briar Beauty.jpg" alt="Briar Beauty filha da Bela Adormecida" width="600">
+        <img src="lelele.jpg" alt="Madeline Hatter filha do Chapeleiro Maluco" width="600">
+        <img src="lololo.jpg" alt="Raven Queen filha da Rainha Má" width="600">
+        <img src="Which Ever After High character are you_.jpg" alt="Cedar Wood filha do Pinóquio" width="600">
+        <img src="applewhite.jpg" alt="Apple White filha da Branca de Neve" width="600">
+    </div>
+    <div class="section">
+        <h2 id="contact">Entre em contato conosco</h2>
+        <p title="Email us at info@sunnydaleschool.com">Email: info@everafterhigh.com</p>
+        <p title="Call us at 555-1234">Número: 5961-1284</p>
+        <p title="Visit us at 123 Storybook Lane, Fairytale City">Endereço: 123 Storybook Lane, Fairytale City</p>
+    </div>
+</div>
+</body>
+</html>
